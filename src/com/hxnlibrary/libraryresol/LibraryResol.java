@@ -87,6 +87,16 @@ public class LibraryResol {
 		
 		// Screen Size ratio this variable is implemented here.
 		// We need to recalculate the px or dp.
+		public int szPDtoPXaxis(int designPx){
+			int curPx = dpiPxToPxCur(designPx);
+			return (int)(curPx * mWidR);
+		}
+		
+		public int szPDtoPYaxis(int designPx){
+			int curPx = dpiPxToPxCur(designPx);
+			return (int)(curPx * mHeiR);
+		}
+		
 		public int szPDtoPC(int designPx){
 			int curPx = dpiPxToPxCur(designPx);
 			return (int)(curPx * mSizeRatio);
@@ -101,7 +111,7 @@ public class LibraryResol {
 		}
 		
 		public int szPDtoSPC(int designPt){
-			float curSP = PxToDp((float)designPt);
+			float curSP = dgnPxToDp((float)designPt);
 			return szDDtoDC(curSP);
 		}
 		// End
@@ -109,7 +119,7 @@ public class LibraryResol {
 		
 		// DPI variable implement. 
 		public int dpiPxToPxCur(int px){
-			int dp = PxToDp(px);
+			int dp = dgnPxToDp(px);
 			float result = dp * mCurScale; //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mMetric);
 			//Log.i("Resol","Final output px = " + result);
 			return (int)result;
@@ -117,7 +127,7 @@ public class LibraryResol {
 		}
 		
 		public int dpiPxToPxCur(float px){
-			int dp = PxToDp((int)px);
+			int dp = dgnPxToDp((int)px);
 			float result = dp* mCurScale;//TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mMetric);
 			//Log.i("Resol","Final output px = " + result);
 			return (int)result;
@@ -126,14 +136,14 @@ public class LibraryResol {
 		// End
 		
 		
-		
-		public int PxToDp(int px){
+		// Design DP
+		public int dgnPxToDp(int px){
 			int result = (int)( px / mDesignScale + 0.5f );
 			//Log.i("Resol","Input px = "+px+", Output dp="+ result);
 			return result; 
 		}
 		
-		public int PxToDp(float px){
+		public int dgnPxToDp(float px){
 			int result = (int)( px / mDesignScale + 0.5f );
 			//Log.i("Resol","Input px = "+px+", Output dp="+ result);
 			return result; 
