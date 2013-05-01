@@ -17,6 +17,8 @@ public class LibraryResol {
 		public final float mWidthInch;
 		public final float mHeightInch;
 		public final float mSizeInch;
+		public final int mWidthPixel;
+		public final int mHeightPixel;
 		private float mExactDPI;
 		private float mSizeRatio;
 		private float mWidR; // Width Ratio
@@ -38,6 +40,9 @@ public class LibraryResol {
 			// Please try S2 you'll find out the reason.
 			mExactDPI = (float) ( Math.sqrt( Math.pow(mMetric.xdpi, 2) + Math.pow(mMetric.ydpi, 2) ) / ( 1.414 ) ); // Math.sqrt(2) = 1.414
 			mCurScale = mExactDPI / 160f ; // e.g: 320/160 = 2.0,  240dpi / 160 = 1.5.  (160dpi is the base DPI.)
+			
+			mWidthPixel = mMetric.widthPixels;
+			mHeightPixel = mMetric.heightPixels;
 			
 			Log.i(LogTag,"Resol: " + mMetric.heightPixels + "x" + mMetric.widthPixels + ". DPI: " + mExactDPI + ". Current Scale/160dpi = "+ mCurScale);
 			Log.i(LogTag,"( Xdpi = " + mMetric.xdpi + ", Ydpi = " + mMetric.ydpi + ")");
